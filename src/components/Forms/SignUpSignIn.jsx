@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { Form, Formik } from "formik";
 
-import CommonTextField from "../common/CommonTextField";
+import CommonTextField from "../Common/CommonTextField";
 import {
   SigninSchema,
   SignupSchema,
@@ -31,7 +31,7 @@ const SignUpSignIn = ({ title, isSignup, submitHandler }) => {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          paddingTop:'10vh',
+          paddingTop:'16vh',
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

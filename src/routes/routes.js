@@ -5,7 +5,8 @@ import Signup from "../pages/Auth/Signup";
 import HomePage from "../pages/Home/HomePage";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
-import IssuedByMe from "../pages/Dashboard/IssuedByMe";
+import AllTasks from "../pages/Dashboard/AllTasks";
+import PageNotFound from "../pages/PageNotFound";
 
 export const routes = createBrowserRouter([
   {
@@ -19,12 +20,11 @@ export const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        // path: "/dashboard/",
         element: <Dashboard />,
       },
       {
-        path: "/dashboard/issued-by-me",
-        element: <IssuedByMe />,
+        path: "/dashboard/all-tasks",
+        element: <AllTasks />,
       },
     ],
   },
@@ -46,4 +46,8 @@ export const routes = createBrowserRouter([
       },
     ],
   },
+  {
+    path:'*',
+    element:<PageNotFound />
+  }
 ]);

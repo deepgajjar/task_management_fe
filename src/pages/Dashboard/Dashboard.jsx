@@ -1,11 +1,23 @@
-import React from 'react';
-import { Typography } from "@mui/material";
+import React, { useEffect } from "react";
+import { Box, CircularProgress } from "@mui/material";
+import { useLazyGetAssignedTicketsQuery } from "../../store/Api/Ticket";
+
+import TaskSection from "../../components/Other/TaskSection";
 
 const Dashboard = () => {
-  return (
-    <>
-      <Typography>Dashboard</Typography>
-    </>
+  const [getAssignedTikets, { data: tickets, isLoading }] =
+    useLazyGetAssignedTicketsQuery();
+
+  useEffect(() => {
+    getAssignedTikets();
+  }, []);
+
+  return !!isLoading ? (
+    <Box sx={{ display: "flex", width: "100%", justifyContent: "center" }}>
+      <CircularProgress />
+    </Box>
+  ) : (
+    <TaskSection tickets={tickets} refetch={getAssignedTikets}/>
   );
 };
 

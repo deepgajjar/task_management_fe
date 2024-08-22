@@ -1,12 +1,11 @@
 import { configureStore, isRejectedWithValue } from "@reduxjs/toolkit";
-import counterSlice from "./slices/counterSlice";
+import flagSlice from "./slices/flagSlice";
 import { baseApi } from "./baseApi";
 
 const globalErrorHandlerMiddleware = () => (next) => async (action) => {
   if (isRejectedWithValue(action)) {
       if (action.payload.status === 401 || action.payload.status === 403) {
         window.localStorage.removeItem("token")
-        // ShowNotification(action.payload.message, 'error');
         window.location.reload();
       }
   }
@@ -15,7 +14,7 @@ const globalErrorHandlerMiddleware = () => (next) => async (action) => {
 
 export default configureStore({
   reducer: {
-    counter: counterSlice,
+    flags:flagSlice,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

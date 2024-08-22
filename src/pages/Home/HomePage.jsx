@@ -1,19 +1,54 @@
-// import { Button } from "@mui/material";
 import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-// import { decrement, increment } from "../../store/slices/counterSlice";
-import AppHeader from "../../components/common/AppHeader";
-import AppBarWithSignInSignUp from "../../components/common/AppBarWithSignInSignUp";
+import AppBarWithSignInSignUp from "../../components/Common/AppBarWithSignInSignUp";
+import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  // const count = useSelector((state) => state.counter.value)
-  // const dispatch = useDispatch()
-  // const location = useLocation();
-  // const navigation = useNavigate();
+  const navigate = useNavigate();
+  const isTokenAvailable = window.localStorage.getItem("token");
+  const clickHandler = () => {
+    if (!!isTokenAvailable) {
+      navigate("/dashboard");
+    } else {
+      navigate("/auth/signin");
+    }
+  };
   return (
     <>
-     <AppBarWithSignInSignUp />
+      <AppBarWithSignInSignUp />
+      <Box
+        sx={{
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h2">
+            Welcome to task management system.
+          </Typography>
+          <Button
+            sx={{
+              mt: 2,
+              textTransform: "unset",
+              fontSize: "1rem",
+            }}
+            // color="inherit"
+            onClick={clickHandler}
+          >
+            {!!isTokenAvailable ? "Go to dashboard" : "Sign in"}
+          </Button>
+        </Box>
+      </Box>
     </>
   );
 };

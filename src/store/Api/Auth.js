@@ -8,36 +8,30 @@ export const userAuth = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
-      // invalidatesTags: ['UserAuth'],
     }),
-    // Login Authentication
     loginAuth: builder.mutation({
       query: (body) => ({
         url: "/user/signin",
         method: "POST",
         body,
       }),
-      // invalidatesTags: ['UserAuth'],
     }),
-
-    // Logout User
-    //   logoutUser: builder.mutation({
-    //     query: () => ({
-    //       url: '/logout',
-    //       method: 'PATCH',
-    //     }),
-    //   }),
-
-    // Get Login User Info
-    //   getLoginUserInfo: builder.query({
-    //     query: () => ({
-    //       url: '/user/me',
-    //       method: 'GET',
-    //     }),
-    //     providesTags: ['UserAuth', 'Employee'],
-    //   }),
+    getUserList: builder.query({
+      query: () => ({
+        url: "/user/getAll",
+        method: "GET",
+      }),
+      providesTags: ["GET_USER_LISTS"],
+    }),
+    getCurrentUserInfo: builder.query({
+      query: () => ({
+        url: "/user/me",
+        method: "GET",
+      }),
+      providesTags: ["GET_USER_INFO"],
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useLoginAuthMutation, useCreateUserMutation } = userAuth;
+export const { useLoginAuthMutation, useCreateUserMutation,useLazyGetUserListQuery,useLazyGetCurrentUserInfoQuery } = userAuth;

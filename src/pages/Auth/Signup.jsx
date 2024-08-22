@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import SignUpSignIn from "../../components/Forms/SignUpSignIn";
 import { useCreateUserMutation } from "../../store/Api/Auth";
-import { ShowNotification } from "../../utils/validations/toasts";
+import { showNotification } from "../../utils/validations/toasts";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -13,21 +13,15 @@ const Signup = () => {
         ...values,
         username: values?.userName,
       });
-      if(!!data?.error){
-        ShowNotification(data?.error?.data?.message,"error")
+      if (!!data?.error) {
+        showNotification(data?.error?.data?.message, "error");
       }
       if (!!data?.data && Object.hasOwn(data?.data, "token")) {
-        window.localStorage.setItem("token",data?.data?.token);
-        ShowNotification(data?.data?.message,"success")
+        window.localStorage.setItem("token", data?.data?.token);
+        showNotification(data?.data?.message, "success");
         navigate("/dashboard");
       }
-      console.log(
-        "form values ==>>> ",
-        data,
-      );
-    } catch (error) {
-      console.log("form values error==>>> ", error);
-    }
+    } catch (error) {}
   };
 
   return (

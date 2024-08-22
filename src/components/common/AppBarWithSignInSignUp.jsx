@@ -4,7 +4,7 @@ import AppHeader from "./AppHeader";
 
 const AppBarWithSignInSignUp = () => {
   const navigate = useNavigate();
-
+  const isTokenAvailable = window.localStorage.getItem("token");
   const headerBtn = [
     {
       title: "Sign in",
@@ -20,9 +20,20 @@ const AppBarWithSignInSignUp = () => {
     },
   ];
 
+  const dashboardBtn = [
+    {
+      title: "Go To Dashboard",
+      clickHandler: () => {
+        navigate("/dashboard");
+      },
+    },
+  ];
+
   return (
     <>
-      <AppHeader headerRightBtns={headerBtn} />
+      <AppHeader
+        headerRightBtns={!!isTokenAvailable ? dashboardBtn : headerBtn}
+      />
     </>
   );
 };
