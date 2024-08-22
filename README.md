@@ -1,7 +1,7 @@
 Project has been created using create react app
 
 technologies : 
-React,react-router,redux-toolkit and used rtk query for manage api calls
+React,react-router,material ui,redux-toolkit and used rtk query for manage api calls
 
 For execute project in development 
 
