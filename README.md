@@ -1,4 +1,4 @@
-Project has been create using create react app
+Project has been created using create react app
 
 technologies : 
 React,react-router,redux-toolkit and used rtk query for manage api calls
