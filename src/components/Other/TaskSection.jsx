@@ -5,7 +5,7 @@ import {
 } from "../../store/Api/Ticket";
 import { useDispatch, useSelector } from "react-redux";
 import { setCreateNewTicketModalFalg } from "../../store/slices/flagSlice";
-import { Box, Grid, Modal } from "@mui/material";
+import { Box, Grid, Modal, Typography } from "@mui/material";
 import TicketCard from "../Cards/TicketCard";
 import { showNotification } from "../../utils/validations/toasts";
 import CreateTaskModal from "../Modals/CreateTaskModal";
@@ -81,18 +81,33 @@ const TaskSection = ({ tickets, refetch }) => {
       }}
     >
       <>
-        <Grid container spacing={2}>
-          {tickets?.map((item) => {
-            return (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={item?._id}>
-                <TicketCard
-                  ticketInfo={item}
-                  clickHandler={taskClickHandler(item)}
-                />
-              </Grid>
-            );
-          })}
-        </Grid>
+        {!!tickets && tickets?.length > 0 ? (
+          <Grid container spacing={2}>
+            {tickets?.map((item) => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={item?._id}>
+                  <TicketCard
+                    ticketInfo={item}
+                    clickHandler={taskClickHandler(item)}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        ) : (
+          <Box
+            sx={{
+              height: "80vh",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h4">You don't have any new task.</Typography>
+          </Box>
+        )}
+
         <Modal
           sx={{
             width: "100%",
