@@ -1,5 +1,8 @@
 Project has been create using create react app
 
+technologies : 
+React,react-router,redux-toolkit and used rtk query for manage api calls
+
 For execute project in development 
 
 1. git clone https://github.com/deepgajjar/task_management_fe.git
